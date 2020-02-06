@@ -2,31 +2,29 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0,
-    tags: ["tag1", "tag2", "tag3"]
+    value: this.props.value
   };
 
-  hanldeIncrement() {
-    console.log("Increment Clicked");
-  }
+  hanldeIncrement = product => {
+    console.log(product);
+    this.setState({ value: this.state.count + 1 });
+  };
+
+  doHandleIncrement = () => {
+    this.hanldeIncrement({ id: 1 });
+  };
 
   render() {
     return (
       <div>
+        {this.props.children}
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={this.handleIncrement}
+          onClick={this.doHandleIncrement}
           className="btn btn-secondary btn-sm"
         >
           Increment
         </button>
-        <ul>
-          <li>
-            {this.state.tags.map(tag => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </li>
-        </ul>
       </div>
     );
   }
